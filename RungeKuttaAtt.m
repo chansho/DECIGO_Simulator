@@ -1,4 +1,4 @@
-function next_xAtt = UpdateAtt(X,i,dtAtt)
+function next_xAtt = RungeKuttaAtt(X,i,dtAtt)
 %姿勢運動伝搬 4次のルンゲクッタ
 %xAtt,next_xAttは行ベクトル
 x = (X.xAtt(i,:))';

@@ -1,4 +1,4 @@
-function next_xPos = UpdatePos(X,i,dtPos)
+function next_xPos = RungeKuttaPos(X,i,dtPos)
 %軌道運動伝播 4次のルンゲクッタ
 %xPos，next_xPos,Fは行ベクトル
 x = (X.xPos(i,:))';

@@ -3,36 +3,29 @@ clear;
 SetParameter;
 
 %ƒCƒ“ƒXƒ^ƒ“ƒX¶¬
-SC1 = SpaceCraft(stepPos,stepAtt,massSC,I_SC);
-%SC2 = SpaceCraft(stepPos,stepAtt,massSC,I_SC);
-M1 = Mirror(stepPos,stepAtt,massM,I_M);
-%M2 = Mirror(stepPos,stepAtt,massM,I_M);
+SC1 = SpaceCraft(Time.stepPos,Time.stepAtt,massSC,I_SC,distSC);
+M1  = Mirror(Time.stepPos,Time.stepAtt,massM,I_M,distM);
 
 %‰Šú’lİ’è
 Initialize;
 
 %‚Æ‚è‚ ‚¦‚¸‹O“¹‚àp¨‚à1•b‚²‚Æ‚ÉXV
-for i = 1:simulationTime-1
+for i = 1:Time.simulationTime-1
   %‹O“¹‰^“®“`”d
-  SC1.xPos(i+1,:) = UpdatePos(SC1,i,dtPos);
-  %SC2.xPos(i+1,:) = UpdatePos(SC2,i,dtPos);
-  M1.xPos(i+1,:) = UpdatePos(M1,i,dtPos);
-  %M2.xPos(i+1,:) = UpdatePos(M2,i,dtPos);
+  UpdatePos(SC1,i,Time.dtPos);
+  UpdatePos(M1,i,Time.dtAtt);
 
   %p¨‰^“®“`”d
-  SC1.xAtt(i+1,:) = UpdateAtt(SC1,i,dtAtt);
-  %SC2.xAtt(i+1,:) = UpdateAtt(SC2,i,dtAtt);
-  M1.xAtt(i+1,:) = UpdateAtt(M1,i,dtAtt);
-  %M2.xAtt(i+1,:) = UpdateAtt(M2,i,dtAtt);
+  UpdateAtt(SC1,i,Time.dtAtt);
+  UpdateAtt(M1,i,Time.dtAtt);
 
   %ŠÏ‘ª
 
   %§Œä—ÊŒvZ
 
   %—ÍCƒgƒ‹ƒNXV
-  SC1.F = EarthGravity(SC1,i)
-  SC1.T = GravityGradient(SC1,i);
-  M1.F = EarthGravity(M1,i);
+  SetForceTorque(SC1,i+1);
+  SetForceTorque(M1,i+1);
 
 end
 
