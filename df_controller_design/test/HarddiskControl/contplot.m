@@ -6,6 +6,8 @@ opts.Ylim = {[1e-2,1e4],[50,250]};
 opts.MagUnits = 'abs';
 opts.MagScale = 'log';
 opts.PhaseUnits = 'deg';
+
+figure('Name','Controller')
 bode(K,opts,'k')
 
 systemnames='Psys K';
